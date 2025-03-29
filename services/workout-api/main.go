@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 )
 
 // WorkoutLog represents the expected input payload
@@ -21,7 +20,6 @@ type XPResponse struct {
 	Reps     int     `json:"reps"`
 	Weight   float64 `json:"weight"`
 	XPGained int     `json:"xp_gained"`
-	Timestamp string `json:"timestamp"`
 }
 
 // logWorkoutHandler handles POST /log requests
@@ -68,7 +66,6 @@ func logWorkoutHandler(w http.ResponseWriter, r *http.Request) {
 		Reps:     workoutLog.Reps,
 		Weight:   workoutLog.Weight,
 		XPGained: xp,
-		Timestamp: time.Now().Format(time.RFC3339),
 	}
 
 	w.Header().Set("Content-Type", "application/json")
